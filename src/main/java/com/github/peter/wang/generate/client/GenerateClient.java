@@ -102,20 +102,22 @@ public class GenerateClient {
 				if(FileUtil.isContainPath(realPath, config.getCopyPaths())){
 					//复制整个目录
 					FileUtil.copyFile(new File(templatePath), new File(config.getOutPath()+Constant.PATH_SEPARATOR+realPath));
+				}else{
+					Template temp = cfg.getTemplate(realPath);
+					Map<String,Object> root = new HashMap<String,Object>();
+					root.put("table", table);
+					root.put("module", config.getModule());
+					
+					String outPath=config.getOutPath()+realPath.substring(0,realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${module}", config.getModule());
+					File outFile=new File(outPath);
+					FileUtil.mkdir(outFile);
+					//得到模板的名字
+					String tempName=realPath.substring(realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${tableName}", table.getTableName());
+					Writer write=new FileWriter(outFile+Constant.PATH_SEPARATOR+tempName);
+					
+					temp.process(root, write);
 				}
-				Template temp = cfg.getTemplate(realPath);
-				Map<String,Object> root = new HashMap<String,Object>();
-				root.put("table", table);
-				root.put("module", config.getModule());
 				
-				String outPath=config.getOutPath()+realPath.substring(0,realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${module}", config.getModule());
-				File outFile=new File(outPath);
-				FileUtil.mkdir(outFile);
-				//得到模板的名字
-				String tempName=realPath.substring(realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${tableName}", table.getTableName());
-				Writer write=new FileWriter(outFile+Constant.PATH_SEPARATOR+tempName);
-				
-				temp.process(root, write);
 			}
 				
 		}
