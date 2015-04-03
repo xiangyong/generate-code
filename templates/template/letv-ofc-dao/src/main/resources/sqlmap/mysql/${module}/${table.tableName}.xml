@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.letv.${module}.dao.impl.${table.tableName}DaoImpl">
+    <resultMap id="${table.tableName}Map" type="${table.tableName}">
+		
+		<#list table.columnList as column>
+		<result column="${column.columnCode}" property="${column.columnType}" jdbcType="${column.jdbcType}" />
+		</#list>
+    </resultMap>
+    
+    <sql id="${table.tableName}Columns">
+    	
+		<#list table.columnList as column>
+			<#if 0=column_index>  
+                 ${column.columnCode}
+			<#else>	
+				,${column.columnCode}
+           </#if>  
+		</#list>
+    </sql>
+    
+     <sql id="${table.tableName}UsedColumns">
+		<#list table.columnList as column>
+			<#if 0=column_index>  
+                 ${column.columnCode}
+			<#else>	
+				,${column.columnCode}
+           </#if>  
+		</#list>
+    </sql>
+
+    <!-- 创建信息 -->
+    <insert id="insert" parameterType="${table.tableName}" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO ${table.tableCode}(<include refid="${table.tableName}UsedColumns"/>) 
+        VALUES 
+		(
+		<#list table.columnList as column>
+			<#if 0=column_index>  
+                 <#noparse>#</#noparse>{${column.columnName}}
+			<#else>	
+				,<#noparse>#</#noparse>{${column.columnName}}
+			</#if>  
+		</#list>
+		)
+	</insert>
+	
+    <!-- 修改信息 -->
+    <update id="update" parameterType="${table.tableName}">
+        <if test="_parameter != null">
+            <if test="id != null and id > 0">
+                update ${table.tableCode} set
+		<#list table.columnList as column>
+			 <if test="${column.columnName} != null and ${column.columnName} != ''">
+                	${column.columnCode} = <#noparse>#</#noparse>{${column.columnName},jdbcType=${column.jdbcType}},
+		     </if>
+		</#list>
+                where id = <#noparse>#</#noparse>{id}
+            </if>
+        </if>
+    </update>
+
+    <!-- 根据主键获取对象信息 -->
+    <select id="get${table.tableName}ById" resultMap="${table.tableName}Map" parameterType="java.lang.Long">
+        <if test="_parameter != null">
+            select <include refid="${table.tableName}Columns"/> from ${table.tableCode}
+            where id = <#noparse>#</#noparse>{_parameter} and yn = 1
+        </if>
+    </select>
+
+  
+
+    <!-- 根据查询Bean获取数据集合，不带翻页 -->
+    <select id="query${table.tableName}List" resultMap="${table.tableName}Map"
+            parameterType="com.letv.ofc.domain.query.${table.tableName}Query">
+        select <include refid="${table.tableName}Columns"/> from ${table.tableCode} where <include refid="queryWhereWithLike"/>
+    </select>
+
+    <!-- 根据查询Bean获取数据集合，翻页 -->
+    <select id="query${table.tableName}ListWithPage" resultMap="${table.tableName}Map"
+            parameterType="com.letv.ofc.domain.query.${table.tableName}Query">
+        select <include refid="${table.tableName}Columns"/> from ${table.tableCode} where <include refid="queryWhereWithLike"/>
+        order by create_time desc 
+        limit <#noparse>#</#noparse>{startIndex},<#noparse>#</#noparse>{pageSize}
+    </select>
+
+    <!-- 根据查询Bean查询-判断是否存在 -->
+    <select id="exist" resultType="java.lang.Integer" parameterType="${table.tableName}">
+        select count(1) from ${table.tableCode} where <include refid="queryWhereWithLike"/>
+    </select>
+
+    <!-- 根据查询Bean获取集合总数 -->
+    <select id="query${table.tableName}Count" resultType="java.lang.Integer"
+            parameterType="com.letv.ofc.domain.query.${table.tableName}Query">
+        select count(1) from ${table.tableCode} where <include refid="queryWhereWithLike"/>
+    </select>
+
+   
+
+    <!-- 常用的查询Where条件 -->
+    <where id="queryWhereWithLike">
+		<#list table.columnList as column>
+			 <if test="${column.columnName} != null and ${column.columnName} != ''">
+                	and ${column.columnCode} = <#noparse>#</#noparse>{${column.columnName},jdbcType=${column.jdbcType}}
+		     </if>
+		</#list>
+    <where> 
+</mapper>

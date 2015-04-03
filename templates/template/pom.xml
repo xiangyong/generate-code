@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.letv.ofc</groupId>
+	<artifactId>letv-ofc</artifactId>
+	<version>1.0.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>letv-ofc-util</module>
+		<module>letv-ofc-domain</module>
+		<module>letv-ofc-proxy</module>
+		<module>letv-ofc-dao</module>
+		<module>letv-ofc-manager</module>
+		<module>letv-ofc-service</module>
+		<module>letv-ofc-web</module>
+		<module>letv-ofc-webservice</module>
+		<module>letv-ofc-worker</module>
+	</modules>
+
+	<properties>
+		<letv-ofc.version>1.0.0.0-SNAPSHOT</letv-ofc.version>
+		<letv-common.version>1.0.0.7</letv-common.version>
+		<letv-schedule.verson>1.1.0.2</letv-schedule.verson>
+		<letv-mail-sdk.version>1.0.0.4</letv-mail-sdk.version>
+		<letv-invoice-sdk.version>1.0.0.1</letv-invoice-sdk.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<ojdbc14.version>10.2.0.4</ojdbc14.version>
+		<mysql.version>5.1.12</mysql.version>
+		<commons-dbcp.version>1.4</commons-dbcp.version>
+		<mybatis.version>3.2.1</mybatis.version>
+		<mybatis-spring.version>1.1.1</mybatis-spring.version>
+
+		<cxf.version>2.2.4</cxf.version>
+		<shiro.version>1.2.2</shiro.version>
+		<quartz.version>1.6.1</quartz.version>
+
+		<javassist.version>3.8.0.GA</javassist.version>
+		<servlet.version>2.4</servlet.version>
+		<jsp.version>2.0</jsp.version>
+		<velocity-tools.version>2.0</velocity-tools.version>
+		<velocity.version>1.7</velocity.version>
+		<jstl.version>1.2</jstl.version>
+
+		<log4j.version>1.2.17</log4j.version>
+		<slf4j.version>1.6.4</slf4j.version>
+		<perf4j.version>0.9.16</perf4j.version>
+		<xstream.version>1.3.1</xstream.version>
+		<commons-configuration.version>1.6</commons-configuration.version>
+		<commons-lang.version>2.5</commons-lang.version>
+		<commons-beanutils.version>1.8.3</commons-beanutils.version>
+		<commons-lang3.version>3.1</commons-lang3.version>
+		<commons-fileupload.version>1.3.1</commons-fileupload.version>
+		<cglib.version>2.1_3</cglib.version>
+		<junit.version>4.5</junit.version>
+
+		<jackson-jaxrs.version>1.9.3</jackson-jaxrs.version>
+		<jackson-smile.version>1.9.13</jackson-smile.version>
+		<jackson-core-asl.version>1.9.13</jackson-core-asl.version>
+		<jackson-mapper-asl.version>1.9.13</jackson-mapper-asl.version>
+
+		<aspectj.version>1.6.11</aspectj.version>
+		<aspectjweaver.version>1.6.9</aspectjweaver.version>
+
+		<jedis.version>2.0.0</jedis.version>
+
+		<resteasy-spring.version>2.2.2.GA</resteasy-spring.version>
+		<jsr311-api.version>1.1.1</jsr311-api.version>
+
+		<xmemcached.version>1.3.8</xmemcached.version>
+		<poi.version>3.7</poi.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- letv-common dependencies -->
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-sdk</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-utils</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-dao</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-manager</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-web</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.common</groupId>
+				<artifactId>letv-common-proxy</artifactId>
+				<version><#noparse>$</#noparse>{letv-common.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.mail</groupId>
+				<artifactId>letv-mail-sdk</artifactId>
+				<version><#noparse>$</#noparse>{letv-mail-sdk.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.letv.invoice</groupId>
+				<artifactId>letv-invoice-sdk</artifactId>
+				<version><#noparse>$</#noparse>{letv-invoice-sdk.version}</version>
+			</dependency>
+			<!-- letv-ofc dependencies -->
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-util</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-domain</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-dao</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-manager</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-proxy</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.letv.ofc</groupId>
+				<artifactId>letv-ofc-service</artifactId>
+				<version><#noparse>$</#noparse>{letv-ofc.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.letv.schedule</groupId>
+				<artifactId>letv-schedule-sdk</artifactId>
+				<version><#noparse>$</#noparse>{letv-schedule.verson}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.letv.schedule</groupId>
+				<artifactId>letv-schedule-core</artifactId>
+				<version><#noparse>$</#noparse>{letv-schedule.verson}</version>
+			</dependency>
+
+			<!-- spring dependencies -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version><#noparse>$</#noparse>{spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.googlecode.xmemcached</groupId>
+				<artifactId>xmemcached</artifactId>
+				<version><#noparse>$</#noparse>{xmemcached.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- mysql dependencies -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version><#noparse>$</#noparse>{mysql.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version><#noparse>$</#noparse>{commons-dbcp.version}</version>
+			</dependency>
+
+			<!-- if you use fileupload in spring mvc -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+				<version><#noparse>$</#noparse>{commons-fileupload.version}</version>
+			</dependency>
+
+			<!-- shiro begin -->
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-core</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-web</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-aspectj</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-cas</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-guice</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.shiro</groupId>
+				<artifactId>shiro-spring</artifactId>
+				<version><#noparse>$</#noparse>{shiro.version}</version>
+			</dependency>
+			<!-- shiro end -->
+
+			<!-- cxf dependencies -->
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-transports-http</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-web</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-rm</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-security</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-addr</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-rt-ws-policy</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-common-utilities</artifactId>
+				<version><#noparse>$</#noparse>{cxf.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-core</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-beans</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.springframework</groupId>
+						<artifactId>spring-context</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- velocity dependencies -->
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity-tools</artifactId>
+				<version><#noparse>$</#noparse>{velocity-tools.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.velocity</groupId>
+				<artifactId>velocity</artifactId>
+				<version><#noparse>$</#noparse>{velocity.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-httpclient</groupId>
+				<artifactId>commons-httpclient</artifactId>
+				<version><#noparse>$</#noparse>{commons-httpclient.version}</version>
+			</dependency>
+
+			<!-- RESTEasy -->
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-spring</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>jsr311-api</artifactId>
+				<version><#noparse>$</#noparse>{jsr311-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxrs</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jaxb-provider</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-jackson-provider</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-multipart-provider</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.jboss.resteasy</groupId>
+				<artifactId>resteasy-cache-core</artifactId>
+				<version><#noparse>$</#noparse>{resteasy-spring.version}</version>
+			</dependency>
+			<!-- RESTEasy -->
+
+			<!-- Excel util jar -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version><#noparse>$</#noparse>{poi.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- Excel util jar -->
+
+			<!-- servlet dependencies -->
+			<dependency>
+				<groupId>javassist</groupId>
+				<artifactId>javassist</artifactId>
+				<version><#noparse>$</#noparse>{javassist.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version><#noparse>$</#noparse>{servlet.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version><#noparse>$</#noparse>{jsp.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>jstl</groupId>
+				<artifactId>jstl</artifactId>
+				<version><#noparse>$</#noparse>{jstl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.opensymphony.quartz</groupId>
+				<artifactId>quartz</artifactId>
+				<version><#noparse>$</#noparse>{quartz.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-configuration</groupId>
+				<artifactId>commons-configuration</artifactId>
+				<version><#noparse>$</#noparse>{commons-configuration.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version><#noparse>$</#noparse>{commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version><#noparse>$</#noparse>{commons-lang.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version><#noparse>$</#noparse>{log4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version><#noparse>$</#noparse>{slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.perf4j</groupId>
+				<artifactId>perf4j</artifactId>
+				<version><#noparse>$</#noparse>{perf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-beanutils</groupId>
+				<artifactId>commons-beanutils</artifactId>
+				<version><#noparse>$</#noparse>{commons-beanutils.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version><#noparse>$</#noparse>{xstream.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version><#noparse>$</#noparse>{cglib.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis</artifactId>
+				<version><#noparse>$</#noparse>{mybatis.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.mybatis</groupId>
+				<artifactId>mybatis-spring</artifactId>
+				<version><#noparse>$</#noparse>{mybatis-spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-jaxrs</artifactId>
+				<version><#noparse>$</#noparse>{jackson-jaxrs.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-smile</artifactId>
+				<version><#noparse>$</#noparse>{jackson-smile.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-core-asl</artifactId>
+				<version><#noparse>$</#noparse>{jackson-core-asl.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.jackson</groupId>
+				<artifactId>jackson-mapper-asl</artifactId>
+				<version><#noparse>$</#noparse>{jackson-mapper-asl.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version><#noparse>$</#noparse>{aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version><#noparse>$</#noparse>{aspectjweaver.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-jexl</groupId>
+				<artifactId>commons-jexl</artifactId>
+				<version>1.1</version>
+			</dependency>
+
+			<!-- Redis Begin -->
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version><#noparse>$</#noparse>{jedis.version}</version>
+			</dependency>
+			<!-- Redis End -->
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version><#noparse>$</#noparse>{junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.1</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac</artifactId>
+						<version>1.8.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<!-- ignore junit test -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<skip>true</skip>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<!--开发环境 -->
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!--数据库配置 -->
+				<database.jdbc.driver>com.mysql.jdbc.Driver</database.jdbc.driver>
+
+				<database.jdbc.url>jdbc:mysql://10.154.252.107:3306/ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</database.jdbc.url>
+				<database.jdbc.username>letv_shop</database.jdbc.username>
+				<database.jdbc.password>shop123456</database.jdbc.password>
+
+				<!-- ofc读库 -->
+				<ofcread.jdbc.url>jdbc:mysql://10.154.252.107:3306/ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</ofcread.jdbc.url>
+				<ofcread.jdbc.username>letv_shop</ofcread.jdbc.username>
+				<ofcread.jdbc.password>shop123456</ofcread.jdbc.password>
+
+				<schedule.jdbc.url>jdbc:mysql://10.154.252.107:3306/schedule?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</schedule.jdbc.url>
+				<schedule.jdbc.username>letv_base</schedule.jdbc.username>
+				<schedule.jdbc.password>base123456</schedule.jdbc.password>
+
+				<order.jdbc.url>jdbc:mysql://10.154.250.19:3306/orders?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</order.jdbc.url>
+				<order.jdbc.username>wangjiu</order.jdbc.username>
+				<order.jdbc.password>wangjiu</order.jdbc.password>
+
+				<address_shipping.jdbc.url>jdbc:mysql://10.154.250.19:3306/address_shipping?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</address_shipping.jdbc.url>
+				<address_shipping.jdbc.username>wangjiu</address_shipping.jdbc.username>
+				<address_shipping.jdbc.password>wangjiu</address_shipping.jdbc.password>
+
+				<biz.jdbc.url>jdbc:mysql://10.154.250.19:3306/biz?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</biz.jdbc.url>
+				<biz.jdbc.username>wangjiu</biz.jdbc.username>
+				<biz.jdbc.password>wangjiu</biz.jdbc.password>
+
+				<pmsdb.jdbc.url>jdbc:mysql://10.154.250.19:3306/pmsdb?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</pmsdb.jdbc.url>
+				<pmsdb.jdbc.username>wangjiu</pmsdb.jdbc.username>
+				<pmsdb.jdbc.password>wangjiu</pmsdb.jdbc.password>
+
+				<!--新增zx_base库获取线下客户名称 -->
+				<zxbase.jdbc.url>jdbc:mysql://10.154.250.19:3306/zx_base?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</zxbase.jdbc.url>
+				<zxbase.jdbc.username>wangjiu</zxbase.jdbc.username>
+				<zxbase.jdbc.password>wangjiu</zxbase.jdbc.password>
+
+				<!-- 服务器日志配置 -->
+				<log.root.level>DEBUG</log.root.level>
+				<log.logs.path>D:/logs</log.logs.path>
+				<log.maxfilesize>100MB</log.maxfilesize>
+
+				<!-- 域名配置 -->
+				<domain.web>dev.ofc.shop.letv.com</domain.web>
+				<portal.api.domain>dev.iapi.shop.letv.com</portal.api.domain>
+				<portal.web.domain>dev.i.shop.letv.com</portal.web.domain>
+				<domain.webservice>dev.ofc-webservice.shop.letv.com</domain.webservice>
+				<domain.worker>dev.ofc-worker.shop.letv.com</domain.worker>
+				<!-- 商品信息接口配置 -->
+				<skuInfo.rep.url>http://srp.shop.letv.com/OpenSku/querySkus.do</skuInfo.rep.url>
+				<!-- 承运商接口 -->
+				<expressInfo.rep.url>http://test.tmsbasews.shop.letv.com/carrierws/getAllCarrier</expressInfo.rep.url>
+				<!-- 库存 -->
+				<produce.stock.url>http://producestockapi.shop.letv.com/api_php/</produce.stock.url>
+				<!-- 库存量监控 -->
+				<inventoryMonitor.rep.url>http://producestockapi.shop.letv.com/api_php/produce_stock_monitor.php</inventoryMonitor.rep.url>
+				<!-- 邮件服务 -->
+				<ERP.SENDMAIL.URL>http://dev.mailws.shop.letv.com/</ERP.SENDMAIL.URL>
+				<erp.mail.code>ofc</erp.mail.code>
+				<erp.mail.content>mail_send</erp.mail.content>
+				<erp.mail.seed>123456</erp.mail.seed>
+				<!-- 订单系统 -->
+				<order.url>http://storecall.shop.letv.com/api/web/update/</order.url>
+				<!--<order.url>http://10.154.252.52:8080/storeHouseCallBack/api/web/update/</order.url> -->
+				<!-- 中远订单下传地址 -->
+				<product_url>http\://60.22.24.19/lopsWeb/LETVEDIService</product_url>
+				<!-- 香港订单下传地址 -->
+				<hk_product_url>http\://59.148.187.248/LeTV_ver2/webcontroller.php</hk_product_url>
+				<!-- 香港订单下传地址 -->
+				<fl_product_url>http\://10.182.63.74\:8003/datahubWeb/FLUXWMSAPI</fl_product_url>
+				<!-- 调用税率接口地址 -->
+				<taxRate_url>http\://srp.shop.letv.com/OpenTaxRate/getRateBySkuNo.do</taxRate_url>
+				<!-- 参数设置 -->
+				<SEND_MAIL_OWN_SIGN>DEV</SEND_MAIL_OWN_SIGN>
+				<SEND_MAIL_ADDRESS>gaohongjing@letv.com,lishulei@letv.com,zhaohengchong@letv.com,zhaoyanan@letv.com,wangcanpei@letv.com</SEND_MAIL_ADDRESS>
+				<service.url.domain.mail>http\://dev.mailws.shop.letv.com/</service.url.domain.mail>
+				<!-- 监控数据积压work时长配置 -->
+				<worker_keeper_time>0 0/10 * ? * * *</worker_keeper_time>
+				<!-- 转历史作业 -->
+				<worker_ToHistory>0/30 * * ? * * *</worker_ToHistory>
+				<!-- 预约下发接口 -->
+				<product_subscribe_url>http\://dev.reservews.shop.letv.com/services/reserveOrder/addReserveOrder</product_subscribe_url>
+			</properties>
+		</profile>
+
+		<!--测试环境 -->
+		<profile>
+			<id>test</id>
+			<properties>
+				<!--数据库配置 -->
+				<database.jdbc.driver>com.mysql.jdbc.Driver</database.jdbc.driver>
+				<database.jdbc.url>jdbc:mysql://10.154.250.19:3306/ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</database.jdbc.url>
+				<database.jdbc.username>wangjiu</database.jdbc.username>
+				<database.jdbc.password>wangjiu</database.jdbc.password>
+
+				<!-- ofc读库 -->
+				<ofcread.jdbc.url>jdbc:mysql://10.154.250.19:3306/ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</ofcread.jdbc.url>
+				<ofcread.jdbc.username>wangjiu</ofcread.jdbc.username>
+				<ofcread.jdbc.password>wangjiu</ofcread.jdbc.password>
+
+				<schedule.jdbc.url>jdbc:mysql://10.154.250.19:3306/schedule?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</schedule.jdbc.url>
+				<schedule.jdbc.username>wangjiu</schedule.jdbc.username>
+				<schedule.jdbc.password>wangjiu</schedule.jdbc.password>
+
+				<order.jdbc.url>jdbc:mysql://10.154.250.19:3306/orders?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</order.jdbc.url>
+				<order.jdbc.username>wangjiu</order.jdbc.username>
+				<order.jdbc.password>wangjiu</order.jdbc.password>
+
+				<address_shipping.jdbc.url>jdbc:mysql://10.154.250.19:3306/address_shipping?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</address_shipping.jdbc.url>
+				<address_shipping.jdbc.username>wangjiu</address_shipping.jdbc.username>
+				<address_shipping.jdbc.password>wangjiu</address_shipping.jdbc.password>
+
+				<biz.jdbc.url>jdbc:mysql://10.154.250.19:3306/biz?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</biz.jdbc.url>
+				<biz.jdbc.username>wangjiu</biz.jdbc.username>
+				<biz.jdbc.password>wangjiu</biz.jdbc.password>
+
+				<pmsdb.jdbc.url>jdbc:mysql://10.154.250.19:3306/pmsdb?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</pmsdb.jdbc.url>
+				<pmsdb.jdbc.username>wangjiu</pmsdb.jdbc.username>
+				<pmsdb.jdbc.password>wangjiu</pmsdb.jdbc.password>
+
+				<!--新增zx_base库获取线下客户名称 -->
+				<zxbase.jdbc.url>jdbc:mysql://10.154.250.19:3306/zx_base?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</zxbase.jdbc.url>
+				<zxbase.jdbc.username>wangjiu</zxbase.jdbc.username>
+				<zxbase.jdbc.password>wangjiu</zxbase.jdbc.password>
+
+				<!-- 服务器日志配置 -->
+				<log.root.level>DEBUG</log.root.level>
+				<log.logs.path>/letv/server/logs</log.logs.path>
+				<log.maxfilesize>100MB</log.maxfilesize>
+
+				<!-- 域名配置 -->
+				<domain.web>test.ofc.shop.letv.com</domain.web>
+				<portal.web.domain>test.i.shop.letv.com</portal.web.domain>
+				<portal.api.domain>test.iapi.shop.letv.com</portal.api.domain>
+				<domain.webservice>test.ofc-webservice.shop.letv.com</domain.webservice>
+				<domain.worker>test.ofc-worker.shop.letv.com</domain.worker>
+				<!-- 商品信息接口配置 -->
+				<skuInfo.rep.url>http://srp.shop.letv.com/OpenSku/querySkus.do</skuInfo.rep.url>
+				<!-- 库存 -->
+				<produce.stock.url>http://test.stockapiproduce.shop.letv.com/api_php/</produce.stock.url>
+				<!-- 库存量监控 -->
+				<inventoryMonitor.rep.url>http://test.stockapiproduce.shop.letv.com/api_php/produce_stock_monitor.php</inventoryMonitor.rep.url>
+				<!-- 邮件服务 -->
+				<ERP.SENDMAIL.URL>http://test.mailws.shop.letv.com/</ERP.SENDMAIL.URL>
+				<erp.mail.code>ofc</erp.mail.code>
+				<erp.mail.content>mail_send</erp.mail.content>
+				<erp.mail.seed>123456</erp.mail.seed>
+				<!-- 订单系统 -->
+				<order.url>http://storecall.shop.letv.com/api/web/update/</order.url>
+				<!-- 承运商接口 -->
+				<expressInfo.rep.url>http://test.tmsbasews.shop.letv.com/carrierws/getAllCarrier</expressInfo.rep.url>
+				<!-- 中远订单下传地址 -->
+				<product_url>http\://60.22.24.19/lopsWeb/LETVEDIService</product_url>
+				<!-- 香港订单下传地址 -->
+				<hk_product_url>http\://59.148.187.248/LeTV_ver2/webcontroller.php</hk_product_url>
+				<!-- 香港订单下传地址 -->
+				<fl_product_url>http\://10.182.63.74\:8003/datahubWeb/FLUXWMSAPI</fl_product_url>
+				<!-- 调用税率接口地址 -->
+				<taxRate_url>http\://srp.shop.letv.com/OpenTaxRate/getRateBySkuNo.do</taxRate_url>
+				<!-- 参数设置 -->
+				<SEND_MAIL_OWN_SIGN>TEST</SEND_MAIL_OWN_SIGN>
+				<SEND_MAIL_ADDRESS>gaohongjing@letv.com,lishulei@letv.com,zhaohengchong@letv.com,zhaoyanan@letv.com,wangcanpei@letv.com,liyanbo@letv.com</SEND_MAIL_ADDRESS>
+				<service.url.domain.mail>http\://test.mailws.shop.letv.com/</service.url.domain.mail>
+				<!-- 监控数据积压work时长配置 -->
+				<worker_keeper_time>0 0/10 * ? * * *</worker_keeper_time>
+				<!-- 转历史作业 -->
+				<worker_ToHistory>0 0/10 * ? * * *</worker_ToHistory>
+				<!-- 预约下发接口 -->
+				<product_subscribe_url>http\://test.reservews.shop.letv.com/services/reserveOrder/addReserveOrder</product_subscribe_url>
+			</properties>
+		</profile>
+
+		<!--生产环境 -->
+		<profile>
+			<id>release</id>
+			<properties>
+				<!--数据库配置 -->
+				<database.jdbc.driver>com.mysql.jdbc.Driver</database.jdbc.driver>
+				<database.jdbc.url>jdbc:mysql://117.121.54.233:3318/zx_ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</database.jdbc.url>
+				<database.jdbc.username>ofc_w</database.jdbc.username>
+				<database.jdbc.password>45ac1e8f1a</database.jdbc.password>
+
+				<!-- ofc读库 -->
+				<ofcread.jdbc.url>jdbc:mysql://117.121.54.233:3318/zx_ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</ofcread.jdbc.url>
+				<ofcread.jdbc.username>ofc_r</ofcread.jdbc.username>
+				<ofcread.jdbc.password>2a024e2d71</ofcread.jdbc.password>
+
+				<schedule.jdbc.url>jdbc:mysql://115.182.63.66:3306/schedule?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</schedule.jdbc.url>
+				<schedule.jdbc.username>wangjiu</schedule.jdbc.username>
+				<schedule.jdbc.password>wangjiu</schedule.jdbc.password>
+
+				<order.jdbc.url>jdbc:mysql://115.182.63.66:3306/orders?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</order.jdbc.url>
+				<order.jdbc.username>wangjiu</order.jdbc.username>
+				<order.jdbc.password>wangjiu</order.jdbc.password>
+
+				<address_shipping.jdbc.url>jdbc:mysql://115.182.63.66:3306/address_shipping?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</address_shipping.jdbc.url>
+				<address_shipping.jdbc.username>wangjiu</address_shipping.jdbc.username>
+				<address_shipping.jdbc.password>wangjiu</address_shipping.jdbc.password>
+
+				<biz.jdbc.url>jdbc:mysql://115.182.63.66:3306/biz?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</biz.jdbc.url>
+				<biz.jdbc.username>wangjiu</biz.jdbc.username>
+				<biz.jdbc.password>wangjiu</biz.jdbc.password>
+
+				<pmsdb.jdbc.url>jdbc:mysql://115.182.63.66:3306/pmsdb?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull</pmsdb.jdbc.url>
+				<pmsdb.jdbc.username>wangjiu</pmsdb.jdbc.username>
+				<pmsdb.jdbc.password>wangjiu</pmsdb.jdbc.password>
+
+				<!-- 服务器日志配置 -->
+				<log.root.level>INFO</log.root.level>
+				<log.logs.path>/letv/server/logs</log.logs.path>
+				<log.maxfilesize>100MB</log.maxfilesize>
+
+				<!-- 域名配置 -->
+				<portal.web.domain>i.shop.letv.com</portal.web.domain>
+				<portal.api.domain>iapi.shop.letv.com</portal.api.domain>
+				<domain.web>ofc.shop.letv.com</domain.web>
+				<domain.webservice>ofcws.shop.letv.com</domain.webservice>
+				<domain.worker>ofc-worker.shop.letv.com</domain.worker>
+				<!-- 商品信息接口配置 -->
+				<skuInfo.rep.url>http://srp.shop.letv.com/OpenSku/querySkus.do</skuInfo.rep.url>
+				<!-- 承运商接口 -->
+				<expressInfo.rep.url>http://tmsbasews.shop.letv.com/carrierws/getAllCarrier</expressInfo.rep.url>
+				<!-- 库存 -->
+				<produce.stock.url>http://producestockapi.shop.letv.com/api_php/</produce.stock.url>
+				<!-- 库存量监控 -->
+				<inventoryMonitor.rep.url>http://stockapiproduce.shop.letv.com/api_php/produce_stock_monitor.php</inventoryMonitor.rep.url>
+				<!-- 邮件服务 -->
+				<ERP.SENDMAIL.URL>http://mailws.shop.letv.com/</ERP.SENDMAIL.URL>
+				<erp.mail.code>ofc</erp.mail.code>
+				<erp.mail.content>mail_send</erp.mail.content>
+				<erp.mail.seed>123456</erp.mail.seed>
+				<!-- 订单系统 -->
+				<order.url>http://storecall.shop.letv.com/api/web/update/</order.url>
+				<!-- 中远订单下传地址 -->
+				<product_url>http\://60.22.24.19/lopsWeb/LETVEDIService</product_url>
+				<!-- 香港订单下传地址 -->
+				<hk_product_url>http\://59.148.187.248/LeTV_ver2/webcontroller.php</hk_product_url>
+				<!-- 香港订单下传地址 -->
+				<fl_product_url>http\://10.182.63.74\:8003/datahubWeb/FLUXWMSAPI</fl_product_url>
+				<!-- 调用税率接口地址 -->
+				<taxRate_url>http\://srp.shop.letv.com/OpenTaxRate/getRateBySkuNo.do</taxRate_url>
+				<!-- 参数设置 -->
+				<SEND_MAIL_OWN_SIGN>RELEASE</SEND_MAIL_OWN_SIGN>
+				<SEND_MAIL_ADDRESS>gaohongjing@letv.com,lishulei@letv.com,zhaohengchong@letv.com,zhaoyanan@letv.com,wangcanpei@letv.com,zhangyanqing@letv.com</SEND_MAIL_ADDRESS>
+				<service.url.domain.mail>http\://test.mailws.shop.letv.com/</service.url.domain.mail>
+				<!-- 监控数据积压work时长配置 -->
+				<worker_keeper_time>0 0/10 * ? * * *</worker_keeper_time>
+				<!-- 转历史作业 -->
+				<worker_ToHistory>0 0/10 * ? * * *</worker_ToHistory>
+				<product_subscribe_url>http\://reservews.shop.letv.com/reserveOrder/addReserveOrder</product_subscribe_url>
+				
+			</properties>
+		</profile>
+	</profiles>
+</project>
