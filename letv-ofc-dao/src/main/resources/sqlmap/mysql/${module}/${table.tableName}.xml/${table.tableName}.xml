@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.letv.pms.dao.impl.WorkTypeDaoImpl">
+    <resultMap id="WorkTypeMap" type="WorkType">
+		
+		<result column="id" property="Long" jdbcType="DECIMAL" />
+		<result column="execute_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="status" property="Integer" jdbcType="DECIMAL" />
+		<result column="create_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="remark" property="String" jdbcType="VARCHAR" />
+		<result column="yn" property="Integer" jdbcType="DECIMAL" />
+		<result column="work_id" property="Integer" jdbcType="DECIMAL" />
+		<result column="id" property="Long" jdbcType="DECIMAL" />
+		<result column="execute_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="status" property="Integer" jdbcType="DECIMAL" />
+		<result column="create_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="update_time" property="java.util.Date" jdbcType="TIMESTAMP" />
+		<result column="remark" property="String" jdbcType="VARCHAR" />
+		<result column="yn" property="Integer" jdbcType="DECIMAL" />
+		<result column="work_id" property="Integer" jdbcType="DECIMAL" />
+    </resultMap>
+    
+    <sql id="WorkTypeColumns">
+    	
+                 id
+				,execute_time
+				,status
+				,create_time
+				,update_time
+				,remark
+				,yn
+				,work_id
+				,id
+				,execute_time
+				,status
+				,create_time
+				,update_time
+				,remark
+				,yn
+				,work_id
+    </sql>
+    
+     <sql id="WorkTypeUsedColumns">
+                 id
+				,execute_time
+				,status
+				,create_time
+				,update_time
+				,remark
+				,yn
+				,work_id
+				,id
+				,execute_time
+				,status
+				,create_time
+				,update_time
+				,remark
+				,yn
+				,work_id
+    </sql>
+
+    <!-- 创建信息 -->
+    <insert id="insert" parameterType="WorkType" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO work_type(<include refid="WorkTypeUsedColumns"/>) 
+        VALUES 
+		(
+                 #{id}
+				,#{executeTime}
+				,#{status}
+				,#{createTime}
+				,#{updateTime}
+				,#{remark}
+				,#{yn}
+				,#{workId}
+				,#{id}
+				,#{executeTime}
+				,#{status}
+				,#{createTime}
+				,#{updateTime}
+				,#{remark}
+				,#{yn}
+				,#{workId}
+		)
+	</insert>
+	
+    <!-- 修改信息 -->
+    <update id="update" parameterType="WorkType">
+        <if test="_parameter != null">
+            <if test="id != null and id > 0">
+                update work_type set
+			 <if test="id != null and id != ''">
+                	id = #{id,jdbcType=DECIMAL},
+		     </if>
+			 <if test="executeTime != null and executeTime != ''">
+                	execute_time = #{executeTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="status != null and status != ''">
+                	status = #{status,jdbcType=DECIMAL},
+		     </if>
+			 <if test="createTime != null and createTime != ''">
+                	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null and updateTime != ''">
+                	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="remark != null and remark != ''">
+                	remark = #{remark,jdbcType=VARCHAR},
+		     </if>
+			 <if test="yn != null and yn != ''">
+                	yn = #{yn,jdbcType=DECIMAL},
+		     </if>
+			 <if test="workId != null and workId != ''">
+                	work_id = #{workId,jdbcType=DECIMAL},
+		     </if>
+			 <if test="id != null and id != ''">
+                	id = #{id,jdbcType=DECIMAL},
+		     </if>
+			 <if test="executeTime != null and executeTime != ''">
+                	execute_time = #{executeTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="status != null and status != ''">
+                	status = #{status,jdbcType=DECIMAL},
+		     </if>
+			 <if test="createTime != null and createTime != ''">
+                	create_time = #{createTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="updateTime != null and updateTime != ''">
+                	update_time = #{updateTime,jdbcType=TIMESTAMP},
+		     </if>
+			 <if test="remark != null and remark != ''">
+                	remark = #{remark,jdbcType=VARCHAR},
+		     </if>
+			 <if test="yn != null and yn != ''">
+                	yn = #{yn,jdbcType=DECIMAL},
+		     </if>
+			 <if test="workId != null and workId != ''">
+                	work_id = #{workId,jdbcType=DECIMAL},
+		     </if>
+                where id = #{id}
+            </if>
+        </if>
+    </update>
+
+    <!-- 根据主键获取对象信息 -->
+    <select id="getWorkTypeById" resultMap="WorkTypeMap" parameterType="java.lang.Long">
+        <if test="_parameter != null">
+            select <include refid="WorkTypeColumns"/> from work_type
+            where id = #{_parameter} and yn = 1
+        </if>
+    </select>
+
+  
+
+    <!-- 根据查询Bean获取数据集合，不带翻页 -->
+    <select id="queryWorkTypeList" resultMap="WorkTypeMap"
+            parameterType="com.letv.ofc.domain.query.WorkTypeQuery">
+        select <include refid="WorkTypeColumns"/> from work_type where <include refid="queryWhereWithLike"/>
+    </select>
+
+    <!-- 根据查询Bean获取数据集合，翻页 -->
+    <select id="queryWorkTypeListWithPage" resultMap="WorkTypeMap"
+            parameterType="com.letv.ofc.domain.query.WorkTypeQuery">
+        select <include refid="WorkTypeColumns"/> from work_type where <include refid="queryWhereWithLike"/>
+        order by create_time desc 
+        limit #{startIndex},#{pageSize}
+    </select>
+
+    <!-- 根据查询Bean查询-判断是否存在 -->
+    <select id="exist" resultType="java.lang.Integer" parameterType="WorkType">
+        select count(1) from work_type where <include refid="queryWhereWithLike"/>
+    </select>
+
+    <!-- 根据查询Bean获取集合总数 -->
+    <select id="queryWorkTypeCount" resultType="java.lang.Integer"
+            parameterType="com.letv.ofc.domain.query.WorkTypeQuery">
+        select count(1) from work_type where <include refid="queryWhereWithLike"/>
+    </select>
+
+   
+
+    <!-- 常用的查询Where条件 -->
+    <where id="queryWhereWithLike">
+			 <if test="id != null and id != ''">
+                	and id = #{id,jdbcType=DECIMAL}
+		     </if>
+			 <if test="executeTime != null and executeTime != ''">
+                	and execute_time = #{executeTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="status != null and status != ''">
+                	and status = #{status,jdbcType=DECIMAL}
+		     </if>
+			 <if test="createTime != null and createTime != ''">
+                	and create_time = #{createTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="updateTime != null and updateTime != ''">
+                	and update_time = #{updateTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="remark != null and remark != ''">
+                	and remark = #{remark,jdbcType=VARCHAR}
+		     </if>
+			 <if test="yn != null and yn != ''">
+                	and yn = #{yn,jdbcType=DECIMAL}
+		     </if>
+			 <if test="workId != null and workId != ''">
+                	and work_id = #{workId,jdbcType=DECIMAL}
+		     </if>
+			 <if test="id != null and id != ''">
+                	and id = #{id,jdbcType=DECIMAL}
+		     </if>
+			 <if test="executeTime != null and executeTime != ''">
+                	and execute_time = #{executeTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="status != null and status != ''">
+                	and status = #{status,jdbcType=DECIMAL}
+		     </if>
+			 <if test="createTime != null and createTime != ''">
+                	and create_time = #{createTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="updateTime != null and updateTime != ''">
+                	and update_time = #{updateTime,jdbcType=TIMESTAMP}
+		     </if>
+			 <if test="remark != null and remark != ''">
+                	and remark = #{remark,jdbcType=VARCHAR}
+		     </if>
+			 <if test="yn != null and yn != ''">
+                	and yn = #{yn,jdbcType=DECIMAL}
+		     </if>
+			 <if test="workId != null and workId != ''">
+                	and work_id = #{workId,jdbcType=DECIMAL}
+		     </if>
+    <where> 
+</mapper>

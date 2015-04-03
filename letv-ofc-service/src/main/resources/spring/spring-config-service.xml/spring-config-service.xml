@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"
+	default-autowire="byName">
+
+	<import resource="classpath*:spring/spring-config-manager.xml" />
+    <import resource="classpath*:spring/spring-config-strategy.xml" />
+
+	<context:component-scan base-package="com.peter.pms.service" />
+	<context:component-scan base-package="com.peter.pms.*.service" />
+
+	<bean id="timingAspect" class="org.perf4j.log4j.aop.TimingAspect" />
+
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate" />
+	
+	<bean id="SpringHelper" class="com.letv.common.utils.config.SpringHelper"/>
+	
+	<bean id="mailSendClient" class="com.letv.mail.sdk.MailSendClient">
+		<property name="serviceUrlDomain" value="${service.url.domain.mail}"></property>
+	</bean>
+	
+	<bean id="mailRequest" class="com.letv.mail.sdk.request.MailRequest">
+		<property name="code" value="${mail.request.code}"></property>
+		<property name="content" value="${mail.request.content}"></property>
+		<property name="seed" value="${mail.request.seed}"></property>
+	</bean>
+	
+	<bean id="subscribeExecuteService" class="com.letv.ofc.subscribe.service.impl.SubscribeExecuteServiceImpl"></bean>
+	
+	<bean id="workTypeService" class="com.letv.ofc.service.impl.WorkTypeServiceImpl"></bean>
+</beans>
