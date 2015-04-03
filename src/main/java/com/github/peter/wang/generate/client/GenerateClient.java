@@ -111,18 +111,20 @@ public class GenerateClient {
 					int index=realPath.lastIndexOf(Constant.PATH_SEPARATOR);
 					String outPath=realPath;
 					String tempName=realPath;//得到模板的名字
-					File outFile=new File(outPath);
-					FileUtil.mkdir(outFile);
-					String filewrite=outFile.toString();
+					
+					File outFile=null;
 					if(index>-1){
-						outPath=config.getOutPath()+realPath.substring(0,realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${module}", config.getModule());
-						tempName=realPath.substring(realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${tableName}", table.getTableName());
-						filewrite=filewrite+Constant.PATH_SEPARATOR+tempName;
+						outPath=config.getOutPath()+realPath.substring(0,index).replace("${module}", config.getModule());
+						tempName=realPath.substring(index).replace("${tableName}", table.getTableName());
+						outFile=new File(outPath);
 					}
-					
-					Writer write=new FileWriter(filewrite);  
-					
+					else{
+						outFile=new File(config.getOutPath());
+					}
+					FileUtil.mkdir(outFile);
+					Writer write=new FileWriter(outFile+Constant.PATH_SEPARATOR+tempName.trim());
 					temp.process(root, write);
+					
 				}
 				
 			}
