@@ -3,7 +3,7 @@ package com.github.peter.wang.generate.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.peter.wang.generate.client.DataType;
+import com.github.peter.wang.generate.constant.DataType;
 
 /**
  * 数据库列的类型对应的java类型

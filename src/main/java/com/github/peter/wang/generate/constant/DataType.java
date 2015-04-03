@@ -1,4 +1,4 @@
-package com.github.peter.wang.generate.client;
+package com.github.peter.wang.generate.constant;
 
 /**
  * 数据类型，常见的类型

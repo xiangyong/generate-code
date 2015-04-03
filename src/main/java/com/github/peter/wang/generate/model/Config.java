@@ -15,10 +15,7 @@ public class Config {
      * 数据库方式
      */
     String DATABASE_STRATEGY = "database";
-    /**
-     * 文件方式
-     */
-    String FILE_STRATEGY = "file";
+    
 	
 	/**
 	 * 输入目录
