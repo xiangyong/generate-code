@@ -2,6 +2,7 @@ package com.github.peter.wang.generate.model;
 
 import com.github.peter.wang.generate.utils.GenerateStringUtils;
 import com.github.peter.wang.generate.utils.JavaDataType;
+import com.github.peter.wang.generate.utils.JdbcDataType;
 
 /**
  * 用来存储列的属性，用来生成对象的属性信息
@@ -31,6 +32,33 @@ public class Column {
 	 * 是否主键
 	 */
 	private String columnKey;
+
+	
+	
+	/**
+	 * jdbc的类型，用来在mybatic中配置
+	 */
+	private String jdbcType;
+	
+	
+	
+	public String getJdbcType() {
+		String type=columnType;
+		int index=columnType.indexOf("(");
+		if(index>-1){
+			type=columnType.substring(0,index);
+		}
+		
+		return JdbcDataType.forType(type);
+	}
+
+
+
+	public void setJdbcType(String jdbcType) {
+		this.jdbcType = jdbcType;
+	}
+
+
 
 	/**
 	 * 

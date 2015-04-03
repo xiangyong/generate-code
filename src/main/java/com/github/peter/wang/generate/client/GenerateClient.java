@@ -50,18 +50,8 @@ public class GenerateClient {
 	 * 代码输出地址
 	 * @throws IOException 
 	 */
-	public void init() throws IOException{
-		config=new TableConfig();
-		config.setInPath("E:/templates/java/");
-		config.setOutPath("d://generateCode//out//");
-		config.setModule("pms");
-		config.setUserName("wangjiu");
-		config.setPassword("wangjiu");
-		config.setConnstr("jdbc:mysql://10.154.250.19:3306/ofc?characterEncoding=UTF-8&amp;zeroDateTimeBehavior=convertToNull");
-		config.setDBName("ofc");
-		List<String> copyPaths=new ArrayList<String>();
-		copyPaths.add("static");
-		config.setCopyPaths(copyPaths);
+	private void init(TableConfig config) throws IOException{
+		this.config=config;
 		//ClassTemplateLoader ctl = new ClassTemplateLoader(GenerateClient.class, config.getInPath());
 		FileTemplateLoader ctl=new FileTemplateLoader(new File(config.getInPath()));
 		cfg=new Configuration();
@@ -72,7 +62,8 @@ public class GenerateClient {
 	 * 根据数据库连接生成代码方式
 	 * @throws Exception 
 	 */
-	public void tableGenerate() throws Exception{
+	public void tableGenerate(TableConfig config) throws Exception{
+		init(config);
 		//用来获取数据，即Data数据
 		Parse parse=new TableParse();
 		
@@ -102,8 +93,6 @@ public class GenerateClient {
 			TemplateException {
 		List<String> templateList=new ArrayList<String>();
 		
-		
-		
 		TemplateUtil.lookforRealTemplate(config.getInPath(),templateList);
 		if(CollectionUtils.isNotEmpty(templateList)){
 			for(String templatePath:templateList){
@@ -117,6 +106,7 @@ public class GenerateClient {
 				Template temp = cfg.getTemplate(realPath);
 				Map<String,Object> root = new HashMap<String,Object>();
 				root.put("table", table);
+				root.put("module", config.getModule());
 				
 				String outPath=config.getOutPath()+realPath.substring(0,realPath.lastIndexOf(Constant.PATH_SEPARATOR)).replace("${module}", config.getModule());
 				File outFile=new File(outPath);
